@@ -1,7 +1,7 @@
 import words from '../../words.json'
 import axios from 'axios'
 
-function PuzzleWord( {puzzle, setPuzzle, guessLetters} ){
+function PuzzleWord( {puzzle, setPuzzle, guessLetters, setGuessLetters} ){
     const fetchWord = async()=>{
         const word_types = ["noun", "adjective", "adverb", "verb"]
         let randomIdx = Math.floor(Math.random()*word_types.length)
@@ -10,8 +10,8 @@ function PuzzleWord( {puzzle, setPuzzle, guessLetters} ){
     }
 
     const displayWord = ()=>{
-        console.log(puzzle, typeof(puzzle))
         let output = []
+        console.log(puzzle)
         for (let char of puzzle){
             if (guessLetters.includes(char)){
                 output.push(char)
@@ -19,6 +19,10 @@ function PuzzleWord( {puzzle, setPuzzle, guessLetters} ){
             else{
                 output.push("_")
             }
+        }
+        if (puzzle != "" && output.join("")==puzzle){
+            setGuessLetters([])
+            alert(`${puzzle}, you've guessed the correct word!\nPress "Get Word" to play a new round!`)
         }
         return output.join(" ")
     }

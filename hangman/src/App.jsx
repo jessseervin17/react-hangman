@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-    <PuzzleWord puzzle={puzzle} setPuzzle={setPuzzle} guessLetters={guessLetters}/>
+    <PuzzleWord puzzle={puzzle} setPuzzle={setPuzzle} guessLetters={guessLetters} setGuessLetters={setGuessLetters}/>
     <SubmitGuess puzzle = {puzzle} guessLetters={guessLetters} setGuessLetters={setGuessLetters}/>
     </>
   )

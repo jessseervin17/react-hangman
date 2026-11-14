@@ -1,16 +1,23 @@
 // import SubmitGuess from '../SubmitGuess/SubmitGuess'
 // import PuzzleWord from '../PuzzleWord/PuzzleWord'
-function WrongGuesses( {puzzle, guessLetters} ){
+function WrongGuesses( {puzzle, guessLetters, setGuessLetters} ){
 
 
     const checkLetterGuess = ()=>{
         let lettersNotInPuzzle=[]
         for (let ltr of guessLetters){
             if (!(puzzle.includes(ltr))){
-                lettersNotInPuzzle.push(ltr)
+            lettersNotInPuzzle.push(ltr)
             }
         }
-        return lettersNotInPuzzle
+
+        if (lettersNotInPuzzle.length>=6 && !(puzzle.includes(lettersNotInPuzzle[lettersNotInPuzzle.length-1]))){
+            alert("Game over...\nPlay another round with the current or...\nPress 'Get Word' to play with a new word!")
+            setGuessLetters([])
+        }
+        else{
+            return lettersNotInPuzzle
+        }
 
 
 
