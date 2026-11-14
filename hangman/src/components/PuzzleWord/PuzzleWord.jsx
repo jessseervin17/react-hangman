@@ -6,11 +6,11 @@ function PuzzleWord( {puzzle, setPuzzle, guessLetters} ){
         const word_types = ["noun", "adjective", "adverb", "verb"]
         let randomIdx = Math.floor(Math.random()*word_types.length)
         let puzzle_word = await axios.get(`https://randomapi.dev/api/words?type=${word_types[randomIdx]}&count=5`)
-        setPuzzle(puzzle_word.data[0].word)
+        setPuzzle(puzzle_word.data.data[0].word)
     }
 
     const displayWord = ()=>{
-        console.log(puzzle)
+        console.log(puzzle, typeof(puzzle))
         let output = []
         for (let char of puzzle){
             if (guessLetters.includes(char)){
@@ -20,9 +20,7 @@ function PuzzleWord( {puzzle, setPuzzle, guessLetters} ){
                 output.push("_")
             }
         }
-        // console.log(puzzle, output)
         return output.join(" ")
-        // return puzzle
     }
 
     return (
