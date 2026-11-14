@@ -1,11 +1,14 @@
 import words from '../../words.json'
+import axios from 'axios'
 
 function PuzzleWord( {puzzle, setPuzzle, guessLetters} ){
     const fetchWord = ()=>{
+        const word_types = ["noun", "adjective", "adverb", "verb"]
         setPuzzle(words[Math.floor(Math.random()*words.length)])
     }
 
     const displayWord = ()=>{
+
         let output = []
         for (let char of puzzle){
             if (guessLetters.includes(char)){
